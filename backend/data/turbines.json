@@ -1,0 +1,21 @@
+[
+    {
+        "turbineId": "IN_KA_0001",
+        "name": "Chitradurga Wind Corridor",
+        "state": "KA",
+        "latitude": 14.225,
+        "longitude": 76.4,
+        "capacityMw": 2.0,
+        "hubHeightM": 80,
+        "rotorDiameterM": 90,
+        "commissioningYear": 2015,
+        "risk": {
+            "date": "2026-03-01",
+            "overall": 0.91,
+            "category": "HIGH",
+            "siting": 0.8,
+            "migration": 0.95,
+            "weather": 0.7
+        }
+    }
+]

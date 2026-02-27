@@ -1,0 +1,20 @@
+{
+    "IN_KA_0001": [
+        {
+            "date": "2026-02-27",
+            "overall": 0.85,
+            "category": "HIGH",
+            "siting": 0.8,
+            "migration": 0.88,
+            "weather": 0.7
+        },
+        {
+            "date": "2026-02-28",
+            "overall": 0.78,
+            "category": "HIGH",
+            "siting": 0.8,
+            "migration": 0.83,
+            "weather": 0.6
+        }
+    ]
+}

@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
@@ -101,30 +101,39 @@
   .gradient-hero {
     background: var(--gradient-hero);
   }
+
   .gradient-card {
     background: var(--gradient-card);
   }
+
   .shadow-glow {
     box-shadow: var(--shadow-glow);
   }
+
   .shadow-card {
     box-shadow: var(--shadow-card);
   }
+
   .text-risk-low {
     color: hsl(var(--risk-low));
   }
+
   .text-risk-medium {
     color: hsl(var(--risk-medium));
   }
+
   .text-risk-high {
     color: hsl(var(--risk-high));
   }
+
   .bg-risk-low {
     background-color: hsl(var(--risk-low));
   }
+
   .bg-risk-medium {
     background-color: hsl(var(--risk-medium));
   }
+
   .bg-risk-high {
     background-color: hsl(var(--risk-high));
   }
