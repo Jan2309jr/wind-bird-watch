@@ -1,11 +1,11 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
+import L from "leaflet";
 import { Slider } from "@/components/ui/slider";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { mockTurbines, getRiskColor, getRiskBgColor } from "@/lib/mock-data";
-import { Wind, ExternalLink, Filter } from "lucide-react";
+import { ExternalLink, Filter } from "lucide-react";
 import "leaflet/dist/leaflet.css";
 
 const riskColorHex = (category: string) => {
@@ -20,11 +20,67 @@ const riskColorHex = (category: string) => {
 const DashboardPage = () => {
   const [riskMin, setRiskMin] = useState(0);
   const [showFilters, setShowFilters] = useState(true);
+  const mapRef = useRef<L.Map | null>(null);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const markersRef = useRef<L.CircleMarker[]>([]);
 
   const filtered = useMemo(
     () => mockTurbines.filter((t) => t.risk.overall >= riskMin),
     [riskMin]
   );
+
+  // Initialize map
+  useEffect(() => {
+    if (!mapContainerRef.current || mapRef.current) return;
+
+    const map = L.map(mapContainerRef.current, {
+      center: [38.5, -98.0],
+      zoom: 5,
+      zoomControl: true,
+    });
+
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+      attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
+    }).addTo(map);
+
+    mapRef.current = map;
+
+    return () => {
+      map.remove();
+      mapRef.current = null;
+    };
+  }, []);
+
+  // Update markers
+  useEffect(() => {
+    if (!mapRef.current) return;
+
+    // Clear old markers
+    markersRef.current.forEach((m) => m.remove());
+    markersRef.current = [];
+
+    filtered.forEach((t) => {
+      const color = riskColorHex(t.risk.category);
+      const marker = L.circleMarker([t.latitude, t.longitude], {
+        radius: 8 + t.risk.overall * 8,
+        color,
+        fillColor: color,
+        fillOpacity: 0.6,
+        weight: 2,
+      }).addTo(mapRef.current!);
+
+      marker.bindPopup(`
+        <div style="min-width:180px">
+          <p style="font-weight:600;margin:0 0 4px">${t.projectName}</p>
+          <p style="font-size:12px;color:#888;margin:0 0 6px">${t.turbineId} · ${t.state}</p>
+          <p style="font-size:14px;margin:0">Risk: <strong>${(t.risk.overall * 100).toFixed(0)}%</strong> (${t.risk.category})</p>
+          <a href="/turbine/${t.turbineId}" style="font-size:12px;color:#14b8a6;margin-top:8px;display:inline-block">View Details →</a>
+        </div>
+      `);
+
+      markersRef.current.push(marker);
+    });
+  }, [filtered]);
 
   return (
     <div className="flex h-[calc(100vh-4rem)] flex-col lg:flex-row">
@@ -101,46 +157,7 @@ const DashboardPage = () => {
           <Filter className="mr-1 h-3 w-3" /> Filters
         </Button>
 
-        <MapContainer
-          center={[38.5, -98.0]}
-          zoom={5}
-          className="h-full w-full"
-          style={{ background: "hsl(222 47% 6%)" }}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://carto.com/">CARTO</a>'
-            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-          />
-          {filtered.map((t) => (
-            <CircleMarker
-              key={t.turbineId}
-              center={[t.latitude, t.longitude]}
-              radius={8 + t.risk.overall * 8}
-              pathOptions={{
-                color: riskColorHex(t.risk.category),
-                fillColor: riskColorHex(t.risk.category),
-                fillOpacity: 0.6,
-                weight: 2,
-              }}
-            >
-              <Popup>
-                <div className="min-w-[180px] text-foreground">
-                  <p className="font-semibold">{t.projectName}</p>
-                  <p className="text-xs text-muted-foreground">{t.turbineId} · {t.state}</p>
-                  <p className="mt-1 text-sm">
-                    Risk: <span className="font-bold">{(t.risk.overall * 100).toFixed(0)}%</span> ({t.risk.category})
-                  </p>
-                  <Link
-                    to={`/turbine/${t.turbineId}`}
-                    className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline"
-                  >
-                    View Details <ExternalLink className="h-3 w-3" />
-                  </Link>
-                </div>
-              </Popup>
-            </CircleMarker>
-          ))}
-        </MapContainer>
+        <div ref={mapContainerRef} className="h-full w-full" />
 
         {/* Legend */}
         <div className="absolute bottom-4 right-4 z-[1000] rounded-lg border border-border bg-card/90 px-4 py-3 backdrop-blur-sm">
