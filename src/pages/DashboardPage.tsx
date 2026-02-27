@@ -34,7 +34,7 @@ const DashboardPage = () => {
     if (!mapContainerRef.current || mapRef.current) return;
 
     const map = L.map(mapContainerRef.current, {
-      center: [38.5, -98.0],
+      center: [14.5, 78.5],
       zoom: 5,
       zoomControl: true,
     });

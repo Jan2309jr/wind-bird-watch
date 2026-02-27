@@ -21,7 +21,7 @@ const Navbar = () => {
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
             <Bird className="h-5 w-5 text-primary-foreground" />
           </div>
-          <span className="text-lg font-bold text-foreground">AviWind Insight</span>
+          <span className="text-lg font-bold text-foreground">EcoTurbine</span>
         </Link>
 
         {/* Desktop nav */}
@@ -30,11 +30,10 @@ const Navbar = () => {
             <Link
               key={item.path}
               to={item.path}
-              className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-                location.pathname === item.path
+              className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${location.pathname === item.path
                   ? "bg-primary/10 text-primary"
                   : "text-muted-foreground hover:text-foreground"
-              }`}
+                }`}
             >
               {item.label}
             </Link>
@@ -60,11 +59,10 @@ const Navbar = () => {
               key={item.path}
               to={item.path}
               onClick={() => setMobileOpen(false)}
-              className={`block rounded-md px-3 py-2 text-sm font-medium ${
-                location.pathname === item.path
+              className={`block rounded-md px-3 py-2 text-sm font-medium ${location.pathname === item.path
                   ? "bg-primary/10 text-primary"
                   : "text-muted-foreground"
-              }`}
+                }`}
             >
               {item.label}
             </Link>

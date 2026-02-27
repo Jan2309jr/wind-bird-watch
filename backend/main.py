@@ -5,7 +5,7 @@ from typing import List
 import json
 from pathlib import Path
 
-app = FastAPI(title="AviWind Insight API")
+app = FastAPI(title="EcoTurbine API")
 
 app.add_middleware(
     CORSMiddleware,

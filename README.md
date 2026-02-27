@@ -1,4 +1,4 @@
-# Wind Bird Watch
+# EcoTurbine
 
 A modern tracking and monitoring platform for wind and bird activity.
 

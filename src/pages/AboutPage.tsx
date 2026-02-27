@@ -11,7 +11,7 @@ const AboutPage = () => (
     <div className="mb-12">
       <h1 className="text-3xl font-bold text-foreground">About & Methodology</h1>
       <p className="mt-3 text-muted-foreground">
-        AviWind Insight predicts bird–wind turbine collision risk by combining turbine siting data, real-time bird observations, and migration forecasts into a single, actionable risk index.
+        EcoTurbine predicts bird–wind turbine collision risk by combining turbine siting data, real-time bird observations, and migration forecasts into a single, actionable risk index.
       </p>
     </div>
 
