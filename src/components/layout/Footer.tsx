@@ -8,10 +8,8 @@ const Footer = () => (
           <Bird className="h-4 w-4 text-primary" />
           <span className="text-sm font-medium text-foreground">EcoTurbine</span>
         </div>
-        <p className="text-xs text-muted-foreground">
-          Data sources: USWTDB · eBird · BirdCast · USGS · BirdLife International
-        </p>
-        <p className="text-xs text-muted-foreground">© 2026 EcoTurbine. Hackathon MVP.</p>
+
+        <p className="text-xs text-muted-foreground">© 2026 EcoTurbine. Team SnackOverflow.</p>
       </div>
     </div>
   </footer>
