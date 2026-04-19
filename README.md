@@ -1,57 +1,47 @@
-# EcoTurbine
+# EcoTurbines — AI-Powered Bird Protection for Wind Farms
 
-A modern tracking and monitoring platform for wind and bird activity.
+EcoTurbines is an advanced monitoring and predictive platform designed to manage the environmental impact of wind energy operations. By leveraging real-time AI modeling and on-site sensor data, the system predicts bird movement patterns and orchestrates automated safety protocols to prevent wildlife collisions.
 
-## Project info
+## 🚀 Key Features
 
-This project provides a comprehensive dashboard for visualizing environmental data, specifically focused on bird migration patterns and wind conditions.
+- **Real-Time Simulation**: Dynamic monitoring of bird activity and turbine risk levels across clusters.
+- **Automated Safety Throttling**: Intelligent reduction of turbine speeds when high-risk collision events are predicted.
+- **Interactive Fleet Mapping**: A comprehensive overview of operations across India with live status indicators.
+- **Operational Analytics**: Data-driven insights into bird migration trends and risk distribution profiles.
+- **Alert Management**: Centralized hub for historical and real-time safety notifications.
 
-## Development
+## 🛠️ Tech Stack
 
-The project is built with Node.js and npm.
+- **Frontend**: React 18, TypeScript, Tailwind CSS
+- **State Management**: React Context with real-time simulation logic
+- **Visualization**: Recharts, Framer Motion, Lucide React
+- **Mapping**: Leaflet (via React-Leaflet)
+- **UI Components**: Radix UI, Shadcn/UI
+
+## 📦 Getting Started
 
 ### Prerequisites
 
-- Node.js (Latest LTS version recommended)
-- npm
+- Node.js (v18 or higher)
+- npm or bun
 
-### Getting Started
+### Installation
 
-```sh
-# Step 1: Clone the repository.
-git clone <YOUR_GIT_URL>
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   ```
 
-# Step 2: Navigate to the project directory.
-cd wind-bird-watch
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm install
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-# Step 4: Start the development server.
-npm run dev
-```
+## 📜 License
 
-## Technologies Used
-
-- **Frontend**: React, Vite, TypeScript
-- **Styling**: Tailwind CSS, shadcn/ui
-- **Maps**: Leaflet
-- **State Management**: TanStack Query
-- **Routing**: React Router
-
-## Features
-
-- Real-time dashboard visualization.
-- Interactive map integration for tracking bird activity.
-- Responsive design for cross-device compatibility.
-- Premium visual aesthetics with glassmorphism and smooth animations.
-
-## Deployment
-
-The project can be built for production using:
-
-```sh
-npm run build
-```
-
-The resulting files in the `dist` directory can be deployed to any static site hosting service (e.g., Vercel, Netlify, GitHub Pages).
+© 2026 EcoTurbines. All rights reserved.
